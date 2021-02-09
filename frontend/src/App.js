@@ -1,16 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import axois from 'axios'
+import Navbar from './Components/NavBar'
+import Login from './Components/Login'
 
 
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
 const App = ()=>{
-    const [data, setData] = useState([])
-    const [loaded, setLoaded]= useState(false)
-    const [placeholder, setPlaceholder] = useState("Loading")
+  const [data, setData] = useState([])
+  const [loggedIn, setLoggedIn]=useState(false)
+  const [user, setUser]=useState({})
 
+  console.log(user)
     useEffect(() => {
         refreshList()
       });
@@ -18,18 +21,20 @@ const App = ()=>{
      const refreshList = () => {
         axios.get("/api/user/").then(res => setData(res.data)).catch(err => console.log(err));
       };
-
+      if(loggedIn) {
       return (
-        <ul>
-          {data.map(user => {
-            return (
-              <li key={user.name}>
-                {user.name} - {user.email} 
-              </li>
-            );
-          })}
-        </ul>
-      );
+        <div>
+          <Navbar></Navbar>
+
+     
+        </div>
+      )
+      }
+      else {
+        return  (
+          <Login setLoggedIn={setLoggedIn} data={data} setUser={setUser}></Login>
+        )
+      }
 }
 
 export default App;
