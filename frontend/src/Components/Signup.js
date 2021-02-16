@@ -1,6 +1,7 @@
+import {Form, Button} from 'react-bootstrap'
 import {useState} from 'react'
 
-const Login = (props) => {
+const Signup = (props) => {
 
   const [username, setUsername]=useState("")
   const [password, setPassword]=useState("")
@@ -21,7 +22,7 @@ const Login = (props) => {
   }
 
   return (
-    <form onSubmit={e => props.handle_login(e, username, password}>
+    <form onSubmit={e => props.handleSignup(e, username, password)}>
       <h4>Log In</h4>
       <label htmlFor="username">Username</label>
       <input
@@ -43,8 +44,8 @@ const Login = (props) => {
 
 }
 
-export default Login
+export default Signup
 
-LoginForm.propTypes = {
+SignuppropTypes = {
   handle_login: PropTypes.func.isRequired
 };

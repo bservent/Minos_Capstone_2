@@ -9,17 +9,28 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
 const App = ()=>{
-  const [data, setData] = useState([])
   const [loggedIn, setLoggedIn]=useState(false)
   const [user, setUser]=useState({})
+  const [displayForm, setDisplayForm]=useState("signup")
+  const 
 
-  console.log(user)
     useEffect(() => {
-        refreshList()
-      });
+        if(loggedIn) {
+          fetch('http://localhost:8000/user/current_user/', {
+            headers: {
+              Authorization: `JWT ${localStorage.getItem('token')}`
+            }
+          })
+            .then(res => res.json())
+            .then(json => {
+              this.setState({ username: json.username });
+            });
+        }
+      handleLogin(e, data)
+    
 
      const refreshList = () => {
-        // axios.get("/api/user/").then(res => setData(res.data)).catch(err => console.log(err));
+        axios.get("/api/user/").then(res => setData(res.data)).catch(err => console.log(err));
       };
       if(loggedIn) {
       return (

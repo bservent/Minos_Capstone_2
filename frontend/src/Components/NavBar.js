@@ -1,21 +1,26 @@
-import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const NavigationBar = () => {
-    console.log("I'm being rendered")
-    return (
-    <Navbar bg="light" expand="lg">
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Transactions</Nav.Link>
-      <Nav.Link href="#home">Income</Nav.Link>
-      <Nav.Link href="#link">Expenses</Nav.Link>
-      <Nav.Link href="#home">Projection</Nav.Link>
-      <Nav.Link href="#link">Logout</Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>)
+function NavigationBar(props) {
+  const logged_out_nav = (
+    <ul>
+      <li onClick={() => props.display_form('login')}>login</li>
+      <li onClick={() => props.display_form('signup')}>signup</li>
+    </ul>
+  );
+
+  const logged_in_nav = (
+    <ul>
+      <li onClick={props.handle_logout}>logout</li>
+    </ul>
+  );
+  return <div>{props.logged_in ? logged_in_nav : logged_out_nav}</div>;
 }
 
-export default NavigationBar
+export default NavigationBar;
+
+Nav.propTypes = {
+  logged_in: PropTypes.bool.isRequired,
+  display_form: PropTypes.func.isRequired,
+  handle_logout: PropTypes.func.isRequired
+};
