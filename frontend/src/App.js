@@ -19,7 +19,7 @@ const App = ()=>{
       });
 
      const refreshList = () => {
-        axios.get("/api/user/").then(res => setData(res.data)).catch(err => console.log(err));
+        // axios.get("/api/user/").then(res => setData(res.data)).catch(err => console.log(err));
       };
       if(loggedIn) {
       return (
