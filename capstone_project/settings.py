@@ -89,8 +89,9 @@ REST_FRAMEWORK = {
     ),
 }
 
-CORS_ORIGIN_WHITELIST = (
+CORS_ALLOWED_ORIGINS = (
     'http://localhost:3000',
+    'http://localhost:8000'
 )
 
 DATABASES = {
@@ -119,6 +120,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'capstone_project.utils.my_jwt_response_handler'
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

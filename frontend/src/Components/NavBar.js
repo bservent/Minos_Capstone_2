@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function NavigationBar(props) {
+  console.log(props)
   const logged_out_nav = (
     <ul>
-      <li onClick={() => props.display_form('login')}>login</li>
-      <li onClick={() => props.display_form('signup')}>signup</li>
+      <li onClick={() => props.handleDisplayForm('login')}>login</li>
+      <li onClick={() => props.handleDisplayForm('signup')}>signup</li>
     </ul>
   );
 
@@ -19,8 +20,8 @@ function NavigationBar(props) {
 
 export default NavigationBar;
 
-Nav.propTypes = {
-  logged_in: PropTypes.bool.isRequired,
-  display_form: PropTypes.func.isRequired,
-  handle_logout: PropTypes.func.isRequired
+NavigationBar.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  handleDisplayForm: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };

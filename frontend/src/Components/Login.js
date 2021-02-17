@@ -1,9 +1,11 @@
 import {useState} from 'react'
+import PropTypes from 'prop-types'
 
 const Login = (props) => {
 
   const [username, setUsername]=useState("")
   const [password, setPassword]=useState("")
+
 
    const  handleSubmit = ()=>{
        props.setUser(props.data[0])
@@ -12,7 +14,7 @@ const Login = (props) => {
   const handleChange = (e)=> {
     const name=e.target.name
     const value=e.target.value 
-    if (name===username) {
+    if (name==="username") {
       setUsername(value)
     }
     else {
@@ -20,8 +22,10 @@ const Login = (props) => {
     }
   }
 
+  console.log("in login")
+
   return (
-    <form onSubmit={e => props.handle_login(e, username, password}>
+    <form onSubmit={e => props.handle_login(e, username, password)}>
       <h4>Log In</h4>
       <label htmlFor="username">Username</label>
       <input
@@ -45,6 +49,6 @@ const Login = (props) => {
 
 export default Login
 
-LoginForm.propTypes = {
+Login.propTypes = {
   handle_login: PropTypes.func.isRequired
 };

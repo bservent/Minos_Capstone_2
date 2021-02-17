@@ -1,5 +1,6 @@
 import {Form, Button} from 'react-bootstrap'
 import {useState} from 'react'
+import PropTypes from 'prop-types'
 
 const Signup = (props) => {
 
@@ -13,17 +14,17 @@ const Signup = (props) => {
   const handleChange = (e)=> {
     const name=e.target.name
     const value=e.target.value 
-    if (name===username) {
+    if (name==="username") {
       setUsername(value)
     }
     else {
       setPassword(value)
     }
   }
-
+  console.log("hello")
   return (
     <form onSubmit={e => props.handleSignup(e, username, password)}>
-      <h4>Log In</h4>
+      <h4>Sign Up</h4>
       <label htmlFor="username">Username</label>
       <input
         type="text"
@@ -46,6 +47,6 @@ const Signup = (props) => {
 
 export default Signup
 
-SignuppropTypes = {
-  handle_login: PropTypes.func.isRequired
+Signup.propTypes = {
+  handleSignup: PropTypes.func.isRequired
 };
