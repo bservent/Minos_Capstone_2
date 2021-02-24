@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {PlaidLink} from "react-plaid-link";
 import axios from "axios";
 
-class Link extends Component {
+class Transactions extends Component {
   constructor() {
     super();
 
@@ -54,4 +54,4 @@ class Link extends Component {
   }
 }
 
-export default Link;
+export default Transactions;

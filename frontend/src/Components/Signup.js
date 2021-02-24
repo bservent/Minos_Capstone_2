@@ -21,7 +21,6 @@ const Signup = (props) => {
       setPassword(value)
     }
   }
-  console.log("hello")
   return (
     <form onSubmit={e => props.handleSignup(e, username, password)}>
       <h4>Sign Up</h4>
@@ -39,7 +38,7 @@ const Signup = (props) => {
         value={password}
         onChange={(e)=>handleChange(e)}
       />
-      <input type="submit" />
+      <input type="submit"  onSubmit={e => props.handleSignup(e, username, password)}/>
     </form>
   );
 
