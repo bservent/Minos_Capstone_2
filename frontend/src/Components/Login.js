@@ -7,10 +7,7 @@ const Login = (props) => {
   const [password, setPassword]=useState("")
 
 
-   const  handleSubmit = ()=>{
-       props.setUser(props.data[0])
-       props.setLoggedIn(true)
-    }
+ 
   const handleChange = (e)=> {
     const name=e.target.name
     const value=e.target.value 
@@ -22,10 +19,9 @@ const Login = (props) => {
     }
   }
 
-  console.log("in login")
 
   return (
-    <form onSubmit={e => props.handle_login(e, username, password)}>
+    <form onSubmit={e => props.handleLogin(e, username, password)}>
       <h4>Log In</h4>
       <label htmlFor="username">Username</label>
       <input
@@ -41,14 +37,14 @@ const Login = (props) => {
         value={password}
         onChange={(e)=>handleChange(e)}
       />
-      <input type="submit" />
+      <input type="submit"/>
     </form>
-  );
+  )
 
 }
 
 export default Login
 
 Login.propTypes = {
-  handle_login: PropTypes.func.isRequired
+  handleLogin: PropTypes.func.isRequired
 };

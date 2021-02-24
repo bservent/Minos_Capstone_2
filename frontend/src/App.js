@@ -11,47 +11,54 @@ import axios from 'axios';
 
 const App = ()=>{
   const [loggedIn, setLoggedIn]=useState(false)
-  const [username, setUsername]=useState({})
+  const [username, setUsername]=useState()
   const [displayForm, setDisplayForm]=useState("signup")
 
   useEffect (()=> {
 
-    if(loggedIn) {
-      fetch('http://localhost:8000/api/user/current_user/', {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('token')}`
-        }
-      })
-        .then(res => res.json())
-        .then(json => {
-          this.setState({ username: json.username });
-        });
-    }
+    // if(loggedIn) {
+    //   fetch('http://localhost:8000/current_user/', {
+    //     headers: {
+    //       Authorization: `JWT ${localStorage.getItem('token')}`
+    //     }
+    //   })
+    //     .then(res => res.json())
+    //     .then(json => {
+    //       console.log(json)
+    //       setUsername(json.username);
+    //     });
+  
 
   })
-    const handleLogin = (e, data) => {
-      e.preventDefault();
+    const handleLogin = (e, username, password) => {
+
+      let data={"username": username,  "password": password}
+
+      console.log(data)
+
+      e.preventDefault()
+      
       fetch('http://localhost:8000/token-auth/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: data
       })
         .then(res => res.json())
         .then(json => {
+          console.log("json", json)
           localStorage.setItem('token', json.token);
           setLoggedIn(true)
-          setUsername(json.user.username)
+          setUsername(json.username)
         });
+      console.log("do we ever get here")
     }
 
     const handleSignup = (e, username, password)=>{
-      console.log("in handle signup")
       let data={"username": username,  "password": password}
       data=JSON.stringify(data)
       
-      console.log(data)
       e.preventDefault();
       fetch('http://localhost:8000/api/user/', {
         method: 'POST',
@@ -63,11 +70,10 @@ const App = ()=>{
         .then(res => res.json())
         .then(json => {
           localStorage.setItem('token', json.token);
+          console.log(json)
           setLoggedIn(true)
-          setUsername(json.userName)
+          setUsername(username)
         });
-        console.log(loggedIn)
-        console.log(username)
     }
 
     const handleLogout = () =>{
@@ -83,7 +89,8 @@ const App = ()=>{
 
 
       
-
+    console.log(username)
+    console.log("loggedIN", loggedIn)
      
       return (
         <div className="App">
